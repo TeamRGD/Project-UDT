@@ -48,9 +48,15 @@ public class Building : MonoBehaviour
         }
 
         // Check for right mouse click to rotate the object
-        if (Input.GetMouseButtonDown(1) && hit.collider.gameObject == gameObject) // When right mouse button is clicked
+        if (Input.GetMouseButtonDown(1)) // When right mouse button is clicked
         {
-            RotateObject();
+            if (hit.collider != null)
+            {
+                if (hit.collider.gameObject == gameObject)
+                {
+                    RotateObject();
+                }
+            }
         }
     }
 
