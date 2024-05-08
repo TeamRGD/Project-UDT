@@ -46,6 +46,12 @@ public class Building : MonoBehaviour
         {
             StopDragging();
         }
+
+        // Check for right mouse click to rotate the object
+        if (Input.GetMouseButtonDown(1) && hit.collider.gameObject == gameObject) // When right mouse button is clicked
+        {
+            RotateObject();
+        }
     }
 
     void StartDragging(Vector3 hitPoint)
@@ -65,5 +71,10 @@ public class Building : MonoBehaviour
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(transform.position).z));
         transform.position = mousePosition + offset;
+    }
+
+    void RotateObject()
+    {
+        transform.Rotate(0, -90, 0); // Rotate object counter-clockwise by 90 degrees
     }
 }
