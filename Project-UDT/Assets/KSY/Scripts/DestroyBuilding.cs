@@ -5,6 +5,7 @@ using UnityEngine;
 public class DestroyBuilding : MonoBehaviour
 {
     public bool isRemovalMode = false; // 제거 모드 상태를 추적하는 변수
+    public Disposition dispositionScript;
 
     void Update()
     {
@@ -33,6 +34,14 @@ public class DestroyBuilding : MonoBehaviour
     // 제거 버튼에 연결될 메소드
     public void EnableRemovalMode()
     {
-        isRemovalMode = !isRemovalMode; // 제거 모드 활성화 및 비활성화
+        if (!dispositionScript.isPlacing)
+        {
+            Debug.Log("adf");
+            isRemovalMode = !isRemovalMode; // 제거 모드 활성화 및 비활성화
+        }
+    }
+    public void EnableRemovalMode_anotherButton()
+    {
+        isRemovalMode = false; // 다른 버튼을 클릭했을 시 remove mode 종료
     }
 }

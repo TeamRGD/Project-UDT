@@ -8,12 +8,12 @@ public class Disposition : MonoBehaviour
     public List<GameObject> buildingPrefabs; // 건물의 Prefab을 할당받을 변수
     private GameObject currentInstance; // 현재 활성화된 인스턴스를 저장하는 변수
     private float fixedYPosition; // 고정된 Y 위치
-    private bool isPlacing = false;
+    public bool isPlacing = false;
     private int currentPrefabIndex = -1; // 현재 선택된 Prefab의 인덱스
 
     void Update()
     {
-        if (currentInstance != null)
+        if (isPlacing && currentInstance != null)
         {
             // 마우스 포인터를 따라가는 로직
             Plane groundPlane = new Plane(Vector3.up, 0); // 지면 평면 생성 (y = 0인 평면임.)
