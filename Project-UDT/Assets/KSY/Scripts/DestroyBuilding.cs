@@ -36,7 +36,6 @@ public class DestroyBuilding : MonoBehaviour
     {
         if (!dispositionScript.isPlacing)
         {
-            Debug.Log("adf");
             isRemovalMode = !isRemovalMode; // 제거 모드 활성화 및 비활성화
         }
     }
