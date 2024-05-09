@@ -507,7 +507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingPrefabs:
   - {fileID: 6126067553227824070, guid: b3640e1fc986a2346b57ba3b665d85ec, type: 3}
-  - {fileID: 3779807158615420920, guid: 178880a434f43614abc4efb31dc093a9, type: 3}
+  - {fileID: 3061416457716154656, guid: e048ff93ca19d644faaab30c032a1ccf, type: 3}
   isPlacing: 0
   gridScale: 0.5
 --- !u!114 &944109399
