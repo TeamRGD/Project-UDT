@@ -12,6 +12,9 @@ public class BatchManager : MonoBehaviour
     public Image[] highlights;
     public RectTransform rectTransform;
 
+    public Texture2D moveCursor;
+    public Texture2D originalCursor;
+
     private GameObject prevObj;
     private int prevInt;
     private bool isClicked;
@@ -37,6 +40,7 @@ public class BatchManager : MonoBehaviour
                     {
                         if (curObj == interactions[i])
                         {
+                            Cursor.SetCursor(moveCursor, new Vector2(0, 0), CursorMode.Auto);
                             prevInt = i;
                             RectTransform highRect = highlights[i].GetComponent<RectTransform>();
                             highRect.DOScaleX(1f, 0.1f).SetEase(Ease.OutSine);
@@ -46,6 +50,7 @@ public class BatchManager : MonoBehaviour
                     {
                         if (curObj == interactions[prevInt])
                         {
+                            Cursor.SetCursor(originalCursor, new Vector2(0, 0), CursorMode.Auto);
                             RectTransform highRect = highlights[prevInt].GetComponent<RectTransform>();
                             highRect.DOScaleX(0f, 0.1f).SetEase(Ease.OutSine);
                             prevInt = -1;
@@ -54,6 +59,7 @@ public class BatchManager : MonoBehaviour
                         {
                             if (curObj == interactions[i])
                             {
+                                Cursor.SetCursor(moveCursor, new Vector2(0, 0), CursorMode.Auto);
                                 RectTransform prevHighRect = highlights[prevInt].GetComponent<RectTransform>();
                                 prevHighRect.DOScaleX(0f, 0.1f).SetEase(Ease.OutSine);
                                 RectTransform highRect = highlights[i].GetComponent<RectTransform>();
