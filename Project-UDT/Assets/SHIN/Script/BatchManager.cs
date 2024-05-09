@@ -2,11 +2,14 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class BatchManager : MonoBehaviour
 {
     public GameObject[] interactions;
+    public Image[] highlights;
     public RectTransform rectTransform;
 
     private GameObject prevObj;
@@ -35,25 +38,31 @@ public class BatchManager : MonoBehaviour
                         if (curObj == interactions[i])
                         {
                             prevInt = i;
+                            RectTransform highRect = highlights[i].GetComponent<RectTransform>();
+                            highRect.DOScaleX(1f, 0.1f).SetEase(Ease.OutSine);
                             isClicked = !isClicked; break;
                         }
                     } else
                     {
                         if (curObj == interactions[prevInt])
                         {
+                            RectTransform highRect = highlights[prevInt].GetComponent<RectTransform>();
+                            highRect.DOScaleX(0f, 0.1f).SetEase(Ease.OutSine);
                             prevInt = -1;
                             isClicked = !isClicked; break;
                         } else
                         {
                             if (curObj == interactions[i])
                             {
+                                RectTransform prevHighRect = highlights[prevInt].GetComponent<RectTransform>();
+                                prevHighRect.DOScaleX(0f, 0.1f).SetEase(Ease.OutSine);
+                                RectTransform highRect = highlights[i].GetComponent<RectTransform>();
+                                highRect.DOScaleX(1f, 0.1f).SetEase(Ease.OutSine);
                                 prevInt = i; break;
                             }
                         }
                     }
-                        //여기서 적절한 프리펩 호출하면 될듯
                     }
-                Debug.Log(prevInt);
                 }
             }
         if (isClicked)
