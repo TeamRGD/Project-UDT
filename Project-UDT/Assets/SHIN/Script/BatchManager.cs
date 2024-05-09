@@ -60,10 +60,10 @@ public class BatchManager : MonoBehaviour
         {
             if (!EventSystem.current.IsPointerOverGameObject())
             {
-                rectTransform.DOAnchorPosY(-340f, 0.25f).SetEase(Ease.OutSine);
+                rectTransform.DOAnchorPosY(-80f, 0.25f).SetEase(Ease.OutSine);
             } else
             {
-                rectTransform.DOAnchorPosY(-160.475f, 0.25f).SetEase(Ease.OutSine);
+                rectTransform.DOAnchorPosY(140f, 0.25f).SetEase(Ease.OutSine);
             }
         }
     }
