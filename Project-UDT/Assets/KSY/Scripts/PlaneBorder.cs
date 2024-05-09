@@ -8,9 +8,26 @@ public class PlaneBorder : MonoBehaviour
     public float borderWidth = 0.1f; // 테두리의 두께
 
     private LineRenderer lineRenderer;
+    private Disposition dispositionScript;
+    public bool isPlaced = false;
 
     void Start()
     {
+        // BuildingManager 오브젝트에서 Disposition 스크립트 찾기
+        GameObject buildingManager = GameObject.Find("BuildingManager");
+        if (buildingManager != null)
+        {
+            dispositionScript = buildingManager.GetComponent<Disposition>();
+            if (dispositionScript == null)
+            {
+                Debug.LogError("Disposition script not found on BuildingManager!");
+            }
+        }
+        else
+        {
+            Debug.LogError("BuildingManager object not found!");
+        }
+
         if (targetRenderer == null)
         {
             Debug.LogError("Target renderer is not assigned!");
@@ -43,5 +60,14 @@ public class PlaneBorder : MonoBehaviour
         corners[4] = corners[0]; // 시작점으로 돌아옴
 
         lineRenderer.SetPositions(corners); // 라인렌더러에 꼭지점 업데이트
+
+        if (!dispositionScript.CheckPlacing())  
+        {
+            lineRenderer.material.color = Color.red;
+        }
+        else
+        {
+            lineRenderer.material.color = Color.green;
+        }
     }
 }

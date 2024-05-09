@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -7,6 +8,7 @@ public class Disposition : MonoBehaviour
 {
     public List<GameObject> buildingPrefabs; // 건물의 Prefab을 할당받을 변수
     private GameObject currentInstance; // 현재 활성화된 인스턴스를 저장하는 변수
+    private GameObject currentInstancePlane;
     private float fixedYPosition; // 고정된 Y 위치
     public bool isPlacing = false;
     private int currentPrefabIndex = -1; // 현재 선택된 Prefab의 인덱스
@@ -29,16 +31,16 @@ public class Disposition : MonoBehaviour
                 hitPoint.z = RoundToGridSize(hitPoint.z);
                 hitPoint.y = fixedYPosition;
                 currentInstance.transform.position = hitPoint; // 교차 지점으로 위치 즉시 업데이트
-                if (CheckCollision(currentInstance))
-                {
-                    Debug.Log("hi");
-                    canPlacing = false;
-                }
             }
 
             // 마우스 클릭으로 위치 고정
             if (canPlacing && Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
+                currentInstance.GetComponent<PlaneBorder>().isPlaced = true;
+                currentInstance.GetComponentInChildren<ChangePlaneMaterial>().isPlaced = true;
+                Destroy(currentInstance.transform.Find("Plane").gameObject);
+                currentInstance.GetComponent<LineRenderer>().material.color = Color.gray;
+                Destroy(currentInstance.GetComponent<PlaneBorder>());
                 currentInstance = null;
                 isPlacing = false; // 배치 완료, 배치 모드 비활성화
             }
@@ -107,9 +109,18 @@ public class Disposition : MonoBehaviour
         return Mathf.Round(coordinate / gridScale) * gridScale;
     }
 
-    bool CheckCollision(GameObject instance)
+    public void CantPlacing()
     {
-        Collider[] colliders = Physics.OverlapBox(instance.transform.position, instance.transform.localScale / 2, Quaternion.identity, LayerMask.GetMask("Building"));
-        return colliders.Length > 0; // 충돌이 있는 경우 true 반환
+        canPlacing = false;
+    }
+
+    public void CanPlacing()
+    {
+        canPlacing = true;
+    }
+
+    public bool CheckPlacing()
+    {
+        return canPlacing;
     }
 }

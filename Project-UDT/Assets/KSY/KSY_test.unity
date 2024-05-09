@@ -808,7 +808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingPrefabs:
-  - {fileID: 8293913541400989988, guid: 5735b741db8195a4ebba93c722acc2fa, type: 3}
+  - {fileID: 8945589122334708250, guid: 2cc8fd4690b153944a0b62ed2c6982e6, type: 3}
   - {fileID: 6455984370923543463, guid: 8679da3c3502edf41a45882d9044f5d6, type: 3}
   - {fileID: 5570744559715607937, guid: 3799291c314ea72458b0f940e15a8b62, type: 3}
   isPlacing: 0
