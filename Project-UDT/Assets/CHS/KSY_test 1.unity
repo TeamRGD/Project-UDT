@@ -123,63 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &99802780
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4996302879077913908, guid: 26e1c57437b64f645b6c091391c5e739, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4996302879077913908, guid: 26e1c57437b64f645b6c091391c5e739, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4996302879077913908, guid: 26e1c57437b64f645b6c091391c5e739, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 6.8212105e-14
-      objectReference: {fileID: 0}
-    - target: {fileID: 4996302879077913908, guid: 26e1c57437b64f645b6c091391c5e739, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4996302879077913908, guid: 26e1c57437b64f645b6c091391c5e739, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.00000008146034
-      objectReference: {fileID: 0}
-    - target: {fileID: 4996302879077913908, guid: 26e1c57437b64f645b6c091391c5e739, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4996302879077913908, guid: 26e1c57437b64f645b6c091391c5e739, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4996302879077913908, guid: 26e1c57437b64f645b6c091391c5e739, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4996302879077913908, guid: 26e1c57437b64f645b6c091391c5e739, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4996302879077913908, guid: 26e1c57437b64f645b6c091391c5e739, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8945589122334708250, guid: 26e1c57437b64f645b6c091391c5e739, type: 3}
-      propertyPath: m_Name
-      value: Building Sky_big_color01
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 26e1c57437b64f645b6c091391c5e739, type: 3}
 --- !u!1 &291506341
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,9 +506,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingPrefabs:
-  - {fileID: 8945589122334708250, guid: 26e1c57437b64f645b6c091391c5e739, type: 3}
-  - {fileID: 6455984370923543463, guid: 00531ec59c1b31248b96c229f0c7817a, type: 3}
+  - {fileID: 6126067553227824070, guid: b3640e1fc986a2346b57ba3b665d85ec, type: 3}
+  - {fileID: 3779807158615420920, guid: 178880a434f43614abc4efb31dc093a9, type: 3}
   isPlacing: 0
+  gridScale: 0.5
 --- !u!114 &944109399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1559,4 +1503,3 @@ SceneRoots:
   - {fileID: 536976383}
   - {fileID: 1043161899}
   - {fileID: 944109397}
-  - {fileID: 99802780}
