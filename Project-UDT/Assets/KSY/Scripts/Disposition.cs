@@ -29,6 +29,11 @@ public class Disposition : MonoBehaviour
                 hitPoint.z = RoundToGridSize(hitPoint.z);
                 hitPoint.y = fixedYPosition;
                 currentInstance.transform.position = hitPoint; // 교차 지점으로 위치 즉시 업데이트
+                if (CheckCollision(currentInstance))
+                {
+                    Debug.Log("hi");
+                    canPlacing = false;
+                }
             }
 
             // 마우스 클릭으로 위치 고정
@@ -87,9 +92,8 @@ public class Disposition : MonoBehaviour
         if (index >= 0 && index < buildingPrefabs.Count)
         {
             currentInstance = Instantiate(buildingPrefabs[index]);
-            // 초기 위치 설정: 바닥에 닿도록 높이 조정
-            float buildingHeight = currentInstance.GetComponent<Renderer>().bounds.size.y;
-            fixedYPosition = buildingHeight / 2; // y 위치를 고정
+            
+            fixedYPosition = 0f; // y 위치를 고정
             Vector3 initialPosition = currentInstance.transform.position;
             initialPosition.y = fixedYPosition;
             currentInstance.transform.position = initialPosition;
@@ -103,12 +107,9 @@ public class Disposition : MonoBehaviour
         return Mathf.Round(coordinate / gridScale) * gridScale;
     }
 
-    private void OnTriggerEnter(Collider other)
+    bool CheckCollision(GameObject instance)
     {
-        if (other.CompareTag("Building"))
-        {
-            Debug.Log("asdf");
-            canPlacing = false;
-        }
+        Collider[] colliders = Physics.OverlapBox(instance.transform.position, instance.transform.localScale / 2, Quaternion.identity, LayerMask.GetMask("Building"));
+        return colliders.Length > 0; // 충돌이 있는 경우 true 반환
     }
 }
