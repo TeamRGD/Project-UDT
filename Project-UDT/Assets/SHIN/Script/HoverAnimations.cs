@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 
 public class HoverAnimations : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public Image jochi;
     public RectTransform rectTransform;
     // Start is called before the first frame update
     void Start()
@@ -22,11 +23,11 @@ public class HoverAnimations : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
      public void OnPointerEnter(PointerEventData eventData)
     {
-        rectTransform.DOAnchorPosY(33f, 0.1f).SetEase(Ease.InOutSine);
+        rectTransform.DOAnchorPosY(40f, 0.1f).SetEase(Ease.InOutSine);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        rectTransform.DOAnchorPosY(23f, 0.1f).SetEase(Ease.InOutSine);
+        rectTransform.DOAnchorPosY(33f, 0.1f).SetEase(Ease.InOutSine);
     }
 
 }
