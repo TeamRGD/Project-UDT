@@ -33,6 +33,18 @@ public class Disposition : MonoBehaviour
                 currentInstance = null;
                 isPlacing = false; // 배치 완료, 배치 모드 비활성화
             }
+
+            // Q 키를 눌러 시계 방향으로 90도 회전
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                currentInstance.transform.Rotate(0, 90, 0);
+            }
+
+            // E 키를 눌러 반시계 방향으로 90도 회전
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                currentInstance.transform.Rotate(0, -90, 0);
+            }
         }
             
     }
