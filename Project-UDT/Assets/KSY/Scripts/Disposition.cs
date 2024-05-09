@@ -10,6 +10,8 @@ public class Disposition : MonoBehaviour
     private float fixedYPosition; // 고정된 Y 위치
     public bool isPlacing = false;
     private int currentPrefabIndex = -1; // 현재 선택된 Prefab의 인덱스
+    public float gridScale = 0.5f;
+    private bool canPlacing = true;
 
     void Update()
     {
@@ -23,12 +25,14 @@ public class Disposition : MonoBehaviour
             if (groundPlane.Raycast(ray, out enter)) // 레이와 평면의 교차점 계산
             {
                 Vector3 hitPoint = ray.GetPoint(enter); // 교차 지점 계산
+                hitPoint.x = RoundToGridSize(hitPoint.x);
+                hitPoint.z = RoundToGridSize(hitPoint.z);
                 hitPoint.y = fixedYPosition;
                 currentInstance.transform.position = hitPoint; // 교차 지점으로 위치 즉시 업데이트
             }
 
             // 마우스 클릭으로 위치 고정
-            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+            if (canPlacing && Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 currentInstance = null;
                 isPlacing = false; // 배치 완료, 배치 모드 비활성화
@@ -91,6 +95,20 @@ public class Disposition : MonoBehaviour
             currentInstance.transform.position = initialPosition;
             isPlacing = true; // 새로운 인스턴스가 생성되었으므로 배치 모드 활성화
             currentPrefabIndex = index; // 현재 생성된 인스턴스의 인덱스 저장
+        }
+    }
+
+    float RoundToGridSize(float coordinate)
+    {
+        return Mathf.Round(coordinate / gridScale) * gridScale;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Building"))
+        {
+            Debug.Log("asdf");
+            canPlacing = false;
         }
     }
 }
