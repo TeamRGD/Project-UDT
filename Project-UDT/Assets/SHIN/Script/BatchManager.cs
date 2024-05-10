@@ -11,6 +11,7 @@ public class BatchManager : MonoBehaviour
     public GameObject[] interactions;
     public Image[] highlights;
     public RectTransform rectTransform;
+    public Text moneyText;
 
     public Texture2D moveCursor;
     public Texture2D originalCursor;
@@ -18,11 +19,15 @@ public class BatchManager : MonoBehaviour
     private GameObject prevObj;
     private int prevInt;
     private bool isClicked;
+
+    private int money;
+    private int[] moneyValues = {200, 190, 180, 170, 160, 150, 140, 130, 120, 110, 100};
     // Start is called before the first frame update
     void Start()
     {
         isClicked = false;
         prevInt = -1;
+        money = 0;
     }
 
     // Update is called once per frame
@@ -53,6 +58,9 @@ public class BatchManager : MonoBehaviour
                             Cursor.SetCursor(originalCursor, new Vector2(0, 0), CursorMode.Auto);
                             RectTransform highRect = highlights[prevInt].GetComponent<RectTransform>();
                             highRect.DOScaleX(0f, 0.1f).SetEase(Ease.OutSine);
+                            //배치에 따른 돈 상승 코드, 배치기능이랑 합쳐지면 맞게 수정할거임.
+                            money += moneyValues[prevInt];
+                            moneyText.DOText(money.ToString(), 0.25f, true, ScrambleMode.Numerals);
                             prevInt = -1;
                             isClicked = !isClicked; break;
                         } else

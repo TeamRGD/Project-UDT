@@ -10,6 +10,7 @@ public class Evaluate : MonoBehaviour
     public GameObject topUI;
     public GameObject bottomUI;
     public GameObject returnBtn;
+    public GameObject moneyInfo;
 
     public GameObject generating;
     public Text[] text;
@@ -40,6 +41,8 @@ public class Evaluate : MonoBehaviour
         RectTransform bottomRect = bottomUI.GetComponent<RectTransform>();
         RectTransform topRect = topUI.GetComponent<RectTransform>();
         RectTransform returnRect = returnBtn.GetComponent<RectTransform>();
+        RectTransform moneyRect = moneyInfo.GetComponent<RectTransform>();
+        moneyRect.DOAnchorPosY(50f, 0.75f).SetEase(Ease.OutQuart);
         bottomRect.DOAnchorPosY(-70f, 0.75f).SetEase(Ease.OutQuart);
         topRect.DOAnchorPosX(600f, 0.75f).SetEase(Ease.OutQuart);
         returnRect.DOAnchorPosX(-35f, 0.75f).SetEase(Ease.OutQuart);
@@ -57,6 +60,8 @@ public class Evaluate : MonoBehaviour
         RectTransform bottomRect = bottomUI.GetComponent<RectTransform>();
         RectTransform topRect = topUI.GetComponent<RectTransform>();
         RectTransform returnRect = returnBtn.GetComponent<RectTransform>();
+        RectTransform moneyRect = moneyInfo.GetComponent<RectTransform>();
+        moneyRect.DOAnchorPosY(-50f, 0.75f).SetEase(Ease.OutQuart);
         bottomRect.DOAnchorPosY(140f, 0.75f).SetEase(Ease.OutQuart);
         topRect.DOAnchorPosX(-600f, 0.75f).SetEase(Ease.OutQuart);
         returnRect.DOAnchorPosX(35f, 0.75f).SetEase(Ease.OutQuart);
