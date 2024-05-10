@@ -7,6 +7,10 @@ public class DestroyBuilding : MonoBehaviour
     public bool isRemovalMode = false; // 제거 모드 상태를 추적하는 변수
     public Disposition dispositionScript;
     private GameObject plane;
+    private ChangeRenderingMode changeRenderingMode;
+    private Material material_;
+    new private Renderer renderer;
+
 
     void Update()
     {
@@ -17,10 +21,13 @@ public class DestroyBuilding : MonoBehaviour
             // 클릭된 오브젝트가 건물인지 확인 (예를 들어 Tag를 사용)
             if (hit.collider.CompareTag("Building") && isRemovalMode)
             {
-                Debug.Log("asdfasdf");
+                //changeRenderingMode = hit.collider.gameObject.GetComponent<ChangeRenderingMode>();
+                //changeRenderingMode.isRemoveMode = isRemovalMode;
                 plane = hit.transform.Find("Plane").gameObject;
                 plane.SetActive(true);
                 plane.GetComponent<ChangePlaneMaterial>().SetMaterial("gray");
+                //renderer = hit.collider.gameObject.GetComponent<Renderer>();
+                //changeRenderingMode.SetMaterialToTransparent(renderer.material);
                 if (Input.GetMouseButtonDown(0))
                     Destroy(hit.collider.gameObject); // 건물 제거
             }
@@ -28,11 +35,9 @@ public class DestroyBuilding : MonoBehaviour
             {
                 if (plane  != null)
                     plane.gameObject.SetActive(false);
+                //material_ = hit.transform.gameObject.GetComponent<Renderer>().material;
+                //changeRenderingMode.SetMaterialToOpaque(material_);
             }
-        }
-        if (isRemovalMode)
-        {
-            Debug.Log("Remove mode");
         }
         dispositionScript.removeMode = isRemovalMode;
     }

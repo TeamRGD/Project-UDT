@@ -6,6 +6,7 @@ public class ChangeRenderingMode : MonoBehaviour
 {
     private Material material_;
     private ObjectDetection objectDetection;
+    public bool isRemoveMode = false;
 
     private void Start()
     {
@@ -21,13 +22,14 @@ public class ChangeRenderingMode : MonoBehaviour
         {
             SetMaterialToOpaque(material_);
         }
-        else
+        else if (!isRemoveMode && !objectDetection.isPlaced)
         {
+            Debug.Log("asdfasdfsGWGWEFEW");
             SetMaterialToTransparent(material_);
         }
     }
 
-    void SetMaterialToOpaque(Material mat)
+    public void SetMaterialToOpaque(Material mat)
     {
         if (mat != null)
         {
@@ -52,7 +54,7 @@ public class ChangeRenderingMode : MonoBehaviour
         }
     }
 
-    void SetMaterialToTransparent(Material mat)
+    public void SetMaterialToTransparent(Material mat)
     {
         if (mat != null)
         {
