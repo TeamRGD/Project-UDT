@@ -17,15 +17,20 @@ public class BatchManager : MonoBehaviour
 
     public Texture2D moveCursor;
     public Texture2D originalCursor;
+    private Disposition dispositionScript;
+    private DestroyBuilding destroyBuilding;
 
     private int prevInt;
     private bool isClicked;
 
-    private int money;
+    public int money;
     private int[] moneyValues = {200, 190, 180, 170, 160, 150, 140, 130, 120, 110, 100};
     // Start is called before the first frame update
     void Start()
     {
+        GameObject buildingManager = GameObject.Find("BuildingManager");
+        dispositionScript = buildingManager.GetComponent<Disposition>();
+        destroyBuilding = buildingManager.GetComponent <DestroyBuilding>(); //destroyBuilding.id_ 사용하면 해서 돈 깎으면 됨. 
         isClicked = false;
         prevInt = -1;
         money = 0;
@@ -34,6 +39,31 @@ public class BatchManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (dispositionScript.currentInstance == null)
+        {
+            if (prevInt!=-1)
+            {
+                icons[prevInt].material = null;
+                Cursor.SetCursor(originalCursor, new Vector2(0, 0), CursorMode.Auto);
+                RectTransform highRect = highlights[prevInt].GetComponent<RectTransform>();
+                highRect.DOScaleX(0f, 0.1f).SetEase(Ease.OutSine);
+                //배치에 따른 돈 상승 코드, 배치기능이랑 합쳐지면 맞게 수정할거임.
+                money += moneyValues[prevInt];
+                moneyText.DOText(money.ToString(), 0.25f, true, ScrambleMode.Numerals);
+                prevInt = -1;
+                isClicked = !isClicked;
+                rectTransform.DOAnchorPosY(137f, 0.25f).SetEase(Ease.OutSine);
+            }
+        }
+        if (destroyBuilding.isRemovalMode)
+        {
+            if (destroyBuilding.isRemoved)
+            {
+                // 여기서 돈 깎으삼.
+                Debug.Log("removed");
+                destroyBuilding.isRemoved = false;
+            }
+        }
         if (Input.GetMouseButtonUp(0))
         {
             GameObject curObj = EventSystem.current.currentSelectedGameObject;
@@ -51,7 +81,8 @@ public class BatchManager : MonoBehaviour
                             prevInt = i;
                             RectTransform highRect = highlights[i].GetComponent<RectTransform>();
                             highRect.DOScaleX(1f, 0.1f).SetEase(Ease.OutSine);
-                            isClicked = !isClicked; break;
+                            isClicked = !isClicked;
+                            break;
                         }
                     } else
                     {
@@ -77,7 +108,8 @@ public class BatchManager : MonoBehaviour
                                 prevHighRect.DOScaleX(0f, 0.1f).SetEase(Ease.OutSine);
                                 RectTransform highRect = highlights[i].GetComponent<RectTransform>();
                                 highRect.DOScaleX(1f, 0.1f).SetEase(Ease.OutSine);
-                                prevInt = i; break;
+                                prevInt = i;
+                                break;
                             }
                         }
                     }

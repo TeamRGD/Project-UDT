@@ -11,6 +11,8 @@ public class ObjectDetection : MonoBehaviour
     public float transparency = 0.5f;
     private Color originalColor;  // 원래의 색상을 저장할 변수
     public bool isPlaced = false;
+    public int id;
+
     void Start()
     {
         originalColor = buildingMaterial.color;

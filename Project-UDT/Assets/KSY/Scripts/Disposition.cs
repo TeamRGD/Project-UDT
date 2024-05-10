@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class Disposition : MonoBehaviour
 {
     public List<GameObject> buildingPrefabs; // 건물의 Prefab을 할당받을 변수
-    private GameObject currentInstance; // 현재 활성화된 인스턴스를 저장하는 변수
+    public GameObject currentInstance; // 현재 활성화된 인스턴스를 저장하는 변수
     private float fixedYPosition; // 고정된 Y 위치
     public bool isPlacing = false;
     private int currentPrefabIndex = -1; // 현재 선택된 Prefab의 인덱스
