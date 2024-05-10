@@ -32,27 +32,6 @@ public class GridDrawer : MonoBehaviour
 
         DrawGrid(gridSizeX, gridSizeZ, startPoint);
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Renderer planeRenderer = planeObject.GetComponent<Renderer>();
-            if (planeRenderer == null)
-            {
-                Debug.LogError("Renderer component not found on the plane object!");
-                return;
-            }
-
-            Vector3 planeSize = planeRenderer.bounds.size; // Plane의 크기 가져오기
-            Vector3 planeCenter = planeRenderer.bounds.center; // Plane의 중심 가져오기
-            Vector3 startPoint = planeCenter - planeSize * 0.5f; // 그리드 시작점 계산 (하단 왼쪽 모서리)
-
-            int gridSizeX = Mathf.FloorToInt(planeSize.x / cellSize); // X축 그리드 수
-            int gridSizeZ = Mathf.FloorToInt(planeSize.z / cellSize); // Z축 그리드 수
-
-            DrawGrid(gridSizeX, gridSizeZ, startPoint);
-        }
-    }
 
     void DrawGrid(int width, int height, Vector3 start)
     {
