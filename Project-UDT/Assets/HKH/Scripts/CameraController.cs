@@ -5,14 +5,12 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public float movementSpeed = 0.1f;
-    public float rotationSpeed = 0.1f; // 회전 속도를 대폭 낮추거나 더 세밀하게 조정
-
-    public float Speed = 5.0f;
+    public float rotationSpeed = 0.1f;
+    public float speed = 5.0f;
     private Transform target;
-    private Color originalColor;
-    private bool toggle = false; // 상태 토글
-    private MeshRenderer targetRenderer;
-
+    private bool toggle = false;
+    private List<MeshRenderer> targetRenderers = new List<MeshRenderer>();
+    private List<Color> originalColors = new List<Color>();
 
     private void Update()
     {
@@ -21,48 +19,63 @@ public class CameraController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.T))
         {
-            if (target == null) // 아직 타겟이 설정되지 않았다면 타겟을 찾습니다.
+            if (!toggle) // 타겟이 처음 설정될 때
             {
-                GameObject followCam = GameObject.FindGameObjectWithTag("FollowCam");
-                if (followCam != null)
+                GameObject[] followCams = GameObject.FindGameObjectsWithTag("FollowCam");
+                foreach (GameObject cam in followCams)
                 {
-                    target = followCam.transform;
-                    targetRenderer = followCam.GetComponent<MeshRenderer>();
-                    originalColor = targetRenderer.material.color;
+                    MeshRenderer renderer = cam.GetComponent<MeshRenderer>();
+                    if (renderer != null)
+                    {
+                        targetRenderers.Add(renderer);
+                        originalColors.Add(renderer.material.color);
+                        renderer.material.color = Color.red;
+                    }
                 }
-            }
 
-            if (target != null)
-            {
-                if (toggle) // 이미 활성화된 상태라면 색을 원래대로 돌리고 코루틴을 멈춥니다.
-                {
-                    StopCoroutine("MoveToTarget");
-                    targetRenderer.material.color = originalColor;
-                }
-                else // 비활성화 상태라면 색을 변경하고 코루틴을 시작합니다.
-                {
-                    targetRenderer.material.color = Color.red;
-                    StartCoroutine("MoveToTarget");
-                }
-                toggle = !toggle;
+                // 랜덤 타겟 선택
+                int randomIndex = Random.Range(0, followCams.Length);
+                target = followCams[randomIndex].transform;
+                StartCoroutine("MoveToTarget");
             }
+            else // 토글이 다시 활성화된 경우
+            {
+                StopCoroutine("MoveToTarget");
+                for (int i = 0; i < targetRenderers.Count; i++)
+                {
+                    targetRenderers[i].material.color = originalColors[i];
+                }
+                targetRenderers.Clear();
+                originalColors.Clear();
+            }
+            toggle = !toggle;
+        }
+    }
+
+    IEnumerator MoveToTarget()
+    {
+        while (Vector3.Distance(transform.position, target.position - target.forward * 5 + target.up * 1) > 0.1f)
+        {
+            Vector3 targetPosition = target.position - target.forward * -50 + target.up * 10;
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+            transform.LookAt(target);
+            yield return null;
         }
     }
 
     private void HandleRotation()
     {
-        if (Input.GetMouseButton(1)) // 우클릭을 유지하는 동안
+        if (Input.GetMouseButton(1))
         {
-            float mouseX = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime * 10; // 속도 감소를 위해 스케일 조정
-            float mouseY = -Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime * 10; // 속도 감소를 위해 스케일 조정
-
+            float mouseX = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime * 10;
+            float mouseY = -Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime * 10;
             transform.eulerAngles += new Vector3(mouseY, mouseX, 0);
         }
     }
 
     private void HandleMovement()
     {
-        if (Input.GetMouseButton(1)) // 우클릭을 유지하는 동안
+        if (Input.GetMouseButton(1))
         {
             if (Input.GetKey(KeyCode.W))
                 transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
@@ -76,16 +89,6 @@ public class CameraController : MonoBehaviour
                 transform.Translate(Vector3.up * movementSpeed * Time.deltaTime);
             if (Input.GetKey(KeyCode.Q))
                 transform.Translate(Vector3.down * movementSpeed * Time.deltaTime);
-        }
-    }
-    IEnumerator MoveToTarget()
-    {
-        while (Vector3.Distance(transform.position, target.position - target.forward * 5 + target.up * 1) > 0.1f)
-        {
-            Vector3 targetPosition = target.position - target.forward * 5 + target.up * 1; // 타겟 앞 5 유닛, 위로 1 유닛
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, Speed * Time.deltaTime);
-            transform.LookAt(target);
-            yield return null;
         }
     }
 }
