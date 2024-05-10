@@ -24,7 +24,6 @@ public class ChangeRenderingMode : MonoBehaviour
         }
         else if (!isRemoveMode && !objectDetection.isPlaced)
         {
-            Debug.Log("asdfasdfsGWGWEFEW");
             SetMaterialToTransparent(material_);
         }
     }
