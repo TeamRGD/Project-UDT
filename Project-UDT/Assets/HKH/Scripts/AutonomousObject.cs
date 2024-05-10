@@ -37,6 +37,9 @@ public class AutonomousObject : MonoBehaviour
             else
             {
                 transform.position = newPosition;
+                // 오브젝트가 이동 방향을 바라보도록 회전
+                Quaternion newRotation = Quaternion.LookRotation(moveDirection);
+                transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 20.0f);
             }
         }
         else
@@ -45,6 +48,7 @@ public class AutonomousObject : MonoBehaviour
             moveDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
         }
     }
+
 
     IEnumerator ChangeDirectionRoutine()
     {
