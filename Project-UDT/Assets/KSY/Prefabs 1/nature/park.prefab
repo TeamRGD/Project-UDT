@@ -444,6 +444,7 @@ MonoBehaviour:
   buildingMaterial: {fileID: 2100000, guid: 597a80de8b35d53498b0699c9c232284, type: 2}
   transparency: 0.5
   isPlaced: 0
+  id: 6
 --- !u!4 &8821851501664652802 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: aa33860fbb72683459f0a15961b9a161, type: 3}

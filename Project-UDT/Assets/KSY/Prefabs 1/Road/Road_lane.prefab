@@ -256,6 +256,7 @@ MonoBehaviour:
   buildingMaterial: {fileID: 2100000, guid: faa0cd7e7e1757945a22cce35d7069cd, type: 2}
   transparency: 0.5
   isPlaced: 0
+  id: 11
 --- !u!114 &7835599393168463334
 MonoBehaviour:
   m_ObjectHideFlags: 0

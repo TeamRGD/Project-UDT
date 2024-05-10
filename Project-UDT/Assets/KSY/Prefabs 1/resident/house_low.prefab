@@ -167,6 +167,7 @@ MonoBehaviour:
   buildingMaterial: {fileID: 2100000, guid: d0b99db790965dc40a437662f169eb57, type: 2}
   transparency: 0.5
   isPlaced: 0
+  id: 1
 --- !u!120 &5880653789269523660
 LineRenderer:
   serializedVersion: 2
@@ -283,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6fa93ed6986b043937c8125e239182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material_: {fileID: 2100000, guid: d0b99db790965dc40a437662f169eb57, type: 2}
+  isRemoveMode: 0
 --- !u!1 &3028312450632860147
 GameObject:
   m_ObjectHideFlags: 0

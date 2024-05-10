@@ -1463,6 +1463,7 @@ MonoBehaviour:
   buildingMaterial: {fileID: -1007990502385404985, guid: 40dfc251d4c8d99499da6af0f38071fa, type: 3}
   transparency: 0.5
   isPlaced: 0
+  id: 7
 --- !u!65 &486979087166527459
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -241,6 +241,7 @@ MonoBehaviour:
   buildingMaterial: {fileID: 2100000, guid: 25119463e811d3c4c82a0d92a6e1c561, type: 2}
   transparency: 0.5
   isPlaced: 0
+  id: 5
 --- !u!65 &5077183096933553539
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -405,3 +406,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6fa93ed6986b043937c8125e239182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRemoveMode: 0

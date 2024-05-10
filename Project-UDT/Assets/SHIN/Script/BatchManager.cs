@@ -23,8 +23,8 @@ public class BatchManager : MonoBehaviour
     private int prevInt;
     private bool isClicked;
 
-    public int money;
-    private int[] moneyValues = {200, 190, 180, 170, 160, 150, 140, 130, 120, 110, 100};
+    public float money;
+    private float[] moneyValues = {10, 1, 1, 1, 1, 1, 100, 1000, 4000, 30, 100, 0.1f, 0.1f, 0.1f, 0.1f, 1, 100, 10};
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +49,7 @@ public class BatchManager : MonoBehaviour
                 highRect.DOScaleX(0f, 0.1f).SetEase(Ease.OutSine);
                 //배치에 따른 돈 상승 코드, 배치기능이랑 합쳐지면 맞게 수정할거임.
                 money += moneyValues[prevInt];
-                moneyText.DOText(money.ToString(), 0.25f, true, ScrambleMode.Numerals);
+                moneyText.DOText(money.ToString()+"M", 0.25f, true, ScrambleMode.Numerals);
                 prevInt = -1;
                 isClicked = !isClicked;
                 rectTransform.DOAnchorPosY(137f, 0.25f).SetEase(Ease.OutSine);
@@ -61,6 +61,8 @@ public class BatchManager : MonoBehaviour
             {
                 // 여기서 돈 깎으삼.
                 Debug.Log("removed");
+                money -= moneyValues[destroyBuilding.id_];
+                moneyText.DOText(money.ToString() + "M", 0.25f, true, ScrambleMode.Numerals);
                 destroyBuilding.isRemoved = false;
             }
         }

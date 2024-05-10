@@ -257,6 +257,7 @@ MonoBehaviour:
   buildingMaterial: {fileID: 2100000, guid: 8f1cbf7d8b46f0c44ab5e32bfc3041a6, type: 2}
   transparency: 0.5
   isPlaced: 0
+  id: 16
 --- !u!114 &2463228821197480089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,6 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6fa93ed6986b043937c8125e239182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRemoveMode: 0
 --- !u!1 &8353698749422603366
 GameObject:
   m_ObjectHideFlags: 0

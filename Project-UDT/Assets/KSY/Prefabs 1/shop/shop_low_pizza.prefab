@@ -275,6 +275,7 @@ MonoBehaviour:
   buildingMaterial: {fileID: 2100000, guid: 98387a5e673a6ab4dbed345505f5ca07, type: 2}
   transparency: 0.5
   isPlaced: 0
+  id: 4
 --- !u!120 &6404255820176992890
 LineRenderer:
   serializedVersion: 2
@@ -405,3 +406,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6fa93ed6986b043937c8125e239182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRemoveMode: 0

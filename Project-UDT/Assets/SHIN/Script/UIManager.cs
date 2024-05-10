@@ -80,8 +80,8 @@ public class UIManager : MonoBehaviour
         destroyRect.DOAnchorPosY(-50f, 1f).SetEase(Ease.OutQuart);
         RectTransform bottomRect = bottomUI.GetComponent<RectTransform>();
         bottomRect.DOAnchorPosY(-80f, 0.5f).SetEase(Ease.InQuart);
-        RectTransform moneyRect = moneyInfo.GetComponent<RectTransform>();
-        moneyRect.DOAnchorPosY(50f, 0.5f).SetEase(Ease.InQuart);
+        //RectTransform moneyRect = moneyInfo.GetComponent<RectTransform>();
+        //moneyRect.DOAnchorPosY(50f, 0.5f).SetEase(Ease.InQuart);
     }
 
     public void OnDestroyExit() {
@@ -92,7 +92,7 @@ public class UIManager : MonoBehaviour
         destroyRect.DOAnchorPosY(50f, 1f).SetEase(Ease.OutQuart);
         RectTransform bottomRect = bottomUI.GetComponent<RectTransform>();
         bottomRect.DOAnchorPosY(137f, 0.5f).SetEase(Ease.OutQuart);
-        RectTransform moneyRect = moneyInfo.GetComponent<RectTransform>();
-        moneyRect.DOAnchorPosY(-50f, 0.75f).SetEase(Ease.OutQuart);
+        //RectTransform moneyRect = moneyInfo.GetComponent<RectTransform>();
+        //moneyRect.DOAnchorPosY(-50f, 0.75f).SetEase(Ease.OutQuart);
     }
 }
