@@ -10,6 +10,8 @@ public class TitleManager : MonoBehaviour
     public GameObject titleUI;
     public GameObject bottomUI;
     public GameObject moneyUI;
+
+    public UIManager ui;
     //public string SceneToLoad;
     //void Update()
     //{
@@ -40,7 +42,7 @@ public class TitleManager : MonoBehaviour
         RectTransform bottomRect = bottomUI.GetComponent<RectTransform>();
         bottomRect.DOAnchorPosY(137f, 1f).SetEase(Ease.OutQuart);
         RectTransform moneyRect = moneyUI.GetComponent<RectTransform>();
-        moneyRect.DOAnchorPosY(-50f, 1f).SetEase(Ease.OutQuart);
+        moneyRect.DOAnchorPosY(-50f, 1f).SetEase(Ease.OutQuart).OnComplete(() => ui.GetComponent<TitleManager>().enabled = false) ;
     }
 
 
