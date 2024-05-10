@@ -91,7 +91,7 @@ public class UIManager : MonoBehaviour
         RectTransform destroyRect = destroyInfo.GetComponent<RectTransform>();
         destroyRect.DOAnchorPosY(50f, 1f).SetEase(Ease.OutQuart);
         RectTransform bottomRect = bottomUI.GetComponent<RectTransform>();
-        bottomRect.DOAnchorPosY(140f, 0.5f).SetEase(Ease.OutQuart);
+        bottomRect.DOAnchorPosY(137f, 0.5f).SetEase(Ease.OutQuart);
         RectTransform moneyRect = moneyInfo.GetComponent<RectTransform>();
         moneyRect.DOAnchorPosY(-50f, 0.75f).SetEase(Ease.OutQuart);
     }

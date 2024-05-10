@@ -28,6 +28,6 @@ public class IndividualHover : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        objectName.DOColor(new Color(0,0,0), 0.01f).SetEase(Ease.Linear);
+        objectName.DOColor(new Color(255,255,255), 0.01f).SetEase(Ease.Linear);
     }
 }

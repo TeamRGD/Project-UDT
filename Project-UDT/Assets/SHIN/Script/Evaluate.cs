@@ -62,7 +62,7 @@ public class Evaluate : MonoBehaviour
         RectTransform returnRect = returnBtn.GetComponent<RectTransform>();
         RectTransform moneyRect = moneyInfo.GetComponent<RectTransform>();
         moneyRect.DOAnchorPosY(-50f, 0.75f).SetEase(Ease.OutQuart);
-        bottomRect.DOAnchorPosY(140f, 0.75f).SetEase(Ease.OutQuart);
+        bottomRect.DOAnchorPosY(137f, 0.75f).SetEase(Ease.OutQuart);
         topRect.DOAnchorPosX(-600f, 0.75f).SetEase(Ease.OutQuart);
         returnRect.DOAnchorPosX(35f, 0.75f).SetEase(Ease.OutQuart);
     }

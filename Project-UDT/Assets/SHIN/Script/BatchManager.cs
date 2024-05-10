@@ -9,14 +9,15 @@ using TMPro;
 public class BatchManager : MonoBehaviour
 {
     public GameObject[] interactions;
+    public Image[] icons;
     public Image[] highlights;
     public RectTransform rectTransform;
     public Text moneyText;
+    public Material outliner;
 
     public Texture2D moveCursor;
     public Texture2D originalCursor;
 
-    private GameObject prevObj;
     private int prevInt;
     private bool isClicked;
 
@@ -45,6 +46,7 @@ public class BatchManager : MonoBehaviour
                     {
                         if (curObj == interactions[i])
                         {
+                            icons[i].material = outliner;
                             Cursor.SetCursor(moveCursor, new Vector2(0, 0), CursorMode.Auto);
                             prevInt = i;
                             RectTransform highRect = highlights[i].GetComponent<RectTransform>();
@@ -55,6 +57,7 @@ public class BatchManager : MonoBehaviour
                     {
                         if (curObj == interactions[prevInt])
                         {
+                            icons[prevInt].material = null;
                             Cursor.SetCursor(originalCursor, new Vector2(0, 0), CursorMode.Auto);
                             RectTransform highRect = highlights[prevInt].GetComponent<RectTransform>();
                             highRect.DOScaleX(0f, 0.1f).SetEase(Ease.OutSine);
@@ -67,6 +70,8 @@ public class BatchManager : MonoBehaviour
                         {
                             if (curObj == interactions[i])
                             {
+                                icons[i].material = outliner;
+                                icons[prevInt].material = null;
                                 Cursor.SetCursor(moveCursor, new Vector2(0, 0), CursorMode.Auto);
                                 RectTransform prevHighRect = highlights[prevInt].GetComponent<RectTransform>();
                                 prevHighRect.DOScaleX(0f, 0.1f).SetEase(Ease.OutSine);
@@ -86,7 +91,7 @@ public class BatchManager : MonoBehaviour
                 rectTransform.DOAnchorPosY(-80f, 0.25f).SetEase(Ease.OutSine);
             } else
             {
-                rectTransform.DOAnchorPosY(140f, 0.25f).SetEase(Ease.OutSine);
+                rectTransform.DOAnchorPosY(137f, 0.25f).SetEase(Ease.OutSine);
             }
         }
     }
