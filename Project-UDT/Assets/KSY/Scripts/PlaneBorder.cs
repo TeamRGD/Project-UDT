@@ -9,7 +9,6 @@ public class PlaneBorder : MonoBehaviour
 
     private LineRenderer lineRenderer;
     private Disposition dispositionScript;
-    public bool isPlaced = false;
 
     void Start()
     {

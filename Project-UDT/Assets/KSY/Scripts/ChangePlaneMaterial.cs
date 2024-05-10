@@ -7,8 +7,8 @@ public class ChangePlaneMaterial : MonoBehaviour
     private Disposition dispositionScript;
     public Material redMaterial; // 활성 상태에서 사용할 Material
     public Material greenMaterial; // 비활성 상태에서 사용할 Material
+    public Material grayMaterial;
     new private Renderer renderer;
-    public bool isPlaced = false;
 
 
     void Start()
@@ -32,15 +32,31 @@ public class ChangePlaneMaterial : MonoBehaviour
 
 
     void Update()
-    {
-        if (!dispositionScript.CheckPlacing())
+    { 
+        if (!dispositionScript.CheckPlacing() && !dispositionScript.removeMode)
         {
-            renderer.material = redMaterial; 
+            SetMaterial("red");
         }
-        else 
+        else if (dispositionScript.CheckPlacing() && !dispositionScript.removeMode)
+        {
+            SetMaterial("green");
+        }
+
+    }
+
+    public void SetMaterial(string color_type)
+    {
+        if (color_type == "red")
+        {
+            renderer.material = redMaterial;
+        }
+        else if (color_type == "green")
         {
             renderer.material = greenMaterial;
         }
-
+        else if (color_type == "gray")
+        {
+            renderer.material = grayMaterial;
+        }
     }
 }

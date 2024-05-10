@@ -6,7 +6,7 @@ public class GridDrawer : MonoBehaviour
 {
     public GameObject planeObject; // Plane 오브젝트
     public Material gridMaterial; // 그리드 라인의 머티리얼
-    public float cellSize = 0.5f; // 셀 크기
+    public float cellSize = 4f; // 셀 크기
 
     void Start()
     {
@@ -51,8 +51,8 @@ public class GridDrawer : MonoBehaviour
         lineObj.transform.parent = this.transform;
         var lineRenderer = lineObj.AddComponent<LineRenderer>();
         lineRenderer.material = gridMaterial;
-        lineRenderer.startWidth = 0.05f;
-        lineRenderer.endWidth = 0.05f;
+        lineRenderer.startWidth = 0.2f;
+        lineRenderer.endWidth = 0.2f;
         lineRenderer.SetPosition(0, start);
         lineRenderer.SetPosition(1, end);
     }

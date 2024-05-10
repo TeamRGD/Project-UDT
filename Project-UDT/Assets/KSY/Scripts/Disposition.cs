@@ -8,12 +8,12 @@ public class Disposition : MonoBehaviour
 {
     public List<GameObject> buildingPrefabs; // 건물의 Prefab을 할당받을 변수
     private GameObject currentInstance; // 현재 활성화된 인스턴스를 저장하는 변수
-    private GameObject currentInstancePlane;
     private float fixedYPosition; // 고정된 Y 위치
     public bool isPlacing = false;
     private int currentPrefabIndex = -1; // 현재 선택된 Prefab의 인덱스
     public float gridScale = 0.5f;
     private bool canPlacing = true;
+    public bool removeMode = false;
 
     void Update()
     {
@@ -36,11 +36,7 @@ public class Disposition : MonoBehaviour
             // 마우스 클릭으로 위치 고정
             if (canPlacing && Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
-                currentInstance.GetComponent<PlaneBorder>().isPlaced = true;
-                currentInstance.GetComponentInChildren<ChangePlaneMaterial>().isPlaced = true;
-                Destroy(currentInstance.transform.Find("Plane").gameObject);
-                currentInstance.GetComponent<LineRenderer>().material.color = Color.gray;
-                Destroy(currentInstance.GetComponent<PlaneBorder>());
+                SetPlane("inactive");
                 currentInstance = null;
                 isPlacing = false; // 배치 완료, 배치 모드 비활성화
             }
@@ -63,6 +59,7 @@ public class Disposition : MonoBehaviour
     // UI 버튼에 의해 호출될 메소드
     public void CreateBuildingInstance(int index)
     {
+        Debug.Log("col");
         if (isPlacing && currentInstance != null)
         {
             if (currentPrefabIndex == index)
@@ -109,18 +106,40 @@ public class Disposition : MonoBehaviour
         return Mathf.Round(coordinate / gridScale) * gridScale;
     }
 
-    public void CantPlacing()
+    public void SetPlacing(bool can_placing)
     {
-        canPlacing = false;
-    }
 
-    public void CanPlacing()
-    {
-        canPlacing = true;
+        if(can_placing)
+            canPlacing = true;
+        else
+            canPlacing = false;
     }
 
     public bool CheckPlacing()
     {
         return canPlacing;
     }
+
+    public void SetPlane(string color_type)
+    {
+        if (color_type == "gray")
+        {
+            currentInstance.GetComponent<LineRenderer>().material.color = Color.gray;
+        }
+        else if (color_type == "red")
+        {
+            currentInstance.GetComponent<LineRenderer>().material.color = Color.red;
+        }
+        else if (color_type == "green")
+        {
+            currentInstance.GetComponent<LineRenderer>().material.color = Color.green;
+        }
+        else if (color_type == "inactive")
+        {
+            SetPlane("gray");
+            currentInstance.GetComponent<PlaneBorder>().enabled = false;
+            currentInstance.transform.Find("Plane").gameObject.SetActive(false);
+        }
+    }
+
 }

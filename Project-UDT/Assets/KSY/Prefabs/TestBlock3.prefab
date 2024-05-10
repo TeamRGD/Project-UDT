@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redMaterial: {fileID: 2100000, guid: 972505f3a880f2d4eb6a9f7cae1826af, type: 2}
   greenMaterial: {fileID: 2100000, guid: 5e7c95209562d1643a0137b8d5b06dbd, type: 2}
-  isPlaced: 0
+  grayMaterial: {fileID: 2100000, guid: 9099f26c8a844b14d821303da9f51ba5, type: 2}
 --- !u!1 &5570744559715607937
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +330,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetRenderer: {fileID: 7000999893208775452}
   borderWidth: 0.1
-  isPlaced: 0
 --- !u!65 &545602837470975301
 BoxCollider:
   m_ObjectHideFlags: 0

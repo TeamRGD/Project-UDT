@@ -6,29 +6,35 @@ public class DestroyBuilding : MonoBehaviour
 {
     public bool isRemovalMode = false; // 제거 모드 상태를 추적하는 변수
     public Disposition dispositionScript;
+    private GameObject plane;
 
     void Update()
     {
-        // 마우스 클릭을 감지하고 제거 모드가 활성화되어 있으면
-        if (Input.GetMouseButtonDown(0) && isRemovalMode)
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit))
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            // 레이캐스트를 사용해 클릭된 오브젝트를 감지
-            if (Physics.Raycast(ray, out hit))
+            // 클릭된 오브젝트가 건물인지 확인 (예를 들어 Tag를 사용)
+            if (hit.collider.CompareTag("Building") && isRemovalMode)
             {
-                // 클릭된 오브젝트가 건물인지 확인 (예를 들어 Tag를 사용)
-                if (hit.collider.CompareTag("Building"))
-                {
+                Debug.Log("asdfasdf");
+                plane = hit.transform.Find("Plane").gameObject;
+                plane.SetActive(true);
+                plane.GetComponent<ChangePlaneMaterial>().SetMaterial("gray");
+                if (Input.GetMouseButtonDown(0))
                     Destroy(hit.collider.gameObject); // 건물 제거
-                }
+            }
+            else if (!hit.collider.CompareTag("Building") && isRemovalMode)
+            {
+                if (plane  != null)
+                    plane.gameObject.SetActive(false);
             }
         }
         if (isRemovalMode)
         {
             Debug.Log("Remove mode");
         }
+        dispositionScript.removeMode = isRemovalMode;
     }
 
     // 제거 버튼에 연결될 메소드
