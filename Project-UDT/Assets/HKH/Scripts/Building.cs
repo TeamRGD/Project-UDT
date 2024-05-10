@@ -4,83 +4,40 @@ using UnityEngine;
 
 public class Building : MonoBehaviour
 {
-    private MeshRenderer meshRenderer;
-    private Color fullOpacity;
-    private Color highTransparency;
-    private bool isDragging = false;
-    private Vector3 offset;
+    private Material buildingMaterial;
+    public float transparency = 0.5f;  // 원하는 투명도 수준
+    private bool isTransparent = false;  // 투명도가 변경되었는지 여부
+    private Color originalColor;  // 원래의 색상을 저장할 변수
 
     void Start()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
-        fullOpacity = meshRenderer.material.color;
-        highTransparency = new Color(fullOpacity.r, fullOpacity.g, fullOpacity.b, 0.3f); // 투명도 30%
-        meshRenderer.material.color = highTransparency;
+        // MeshRenderer에서 Material을 가져옵니다.
+        buildingMaterial = GetComponent<MeshRenderer>().material;
+        // 초기 색상 저장
+        originalColor = buildingMaterial.color;
     }
 
     void Update()
     {
-        if (isDragging)
+        if (Input.GetKeyDown(KeyCode.L))
         {
-            DragObject();
-        }
-
-        CheckForMouseEvents();
-    }
-
-    void CheckForMouseEvents()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        // Check if mouse is over the gameObject
-        if (Physics.Raycast(ray, out hit) && hit.collider.gameObject == gameObject)
-        {
-            if (Input.GetMouseButtonDown(0)) // When left mouse button is pressed
-            {
-                StartDragging(hit.point);
-            }
-        }
-
-        if (Input.GetMouseButtonUp(0) && isDragging) // When left mouse button is released
-        {
-            StopDragging();
-        }
-
-        // Check for right mouse click to rotate the object
-        if (Input.GetMouseButtonDown(1)) // When right mouse button is clicked
-        {
-            if (hit.collider != null)
-            {
-                if (hit.collider.gameObject == gameObject)
-                {
-                    RotateObject();
-                }
-            }
+            ToggleTransparency();
         }
     }
 
-    void StartDragging(Vector3 hitPoint)
+    void ToggleTransparency()
     {
-        isDragging = true;
-        meshRenderer.material.color = fullOpacity; // Change to full opacity when dragging
-        offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(transform.position).z));
-    }
-
-    void StopDragging()
-    {
-        isDragging = false;
-        meshRenderer.material.color = highTransparency; // Restore transparency when not dragging
-    }
-
-    void DragObject()
-    {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(transform.position).z));
-        transform.position = mousePosition + offset;
-    }
-
-    void RotateObject()
-    {
-        transform.Rotate(0, -90, 0); // Rotate object counter-clockwise by 90 degrees
+        if (!isTransparent)
+        {
+            // 투명도를 높이기
+            buildingMaterial.color = new Color(originalColor.r, originalColor.g, originalColor.b, transparency);
+            isTransparent = true;
+        }
+        else
+        {
+            // 투명도 복원
+            buildingMaterial.color = originalColor;
+            isTransparent = false;
+        }
     }
 }
