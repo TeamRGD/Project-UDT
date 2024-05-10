@@ -19,6 +19,7 @@ public class Disposition : MonoBehaviour
     {
         if (isPlacing && currentInstance != null)
         {
+            currentInstance.GetComponent<ObjectDetection>().isPlaced = false;
             // 마우스 포인터를 따라가는 로직
             Plane groundPlane = new Plane(Vector3.up, 0); // 지면 평면 생성 (y = 0인 평면임.)
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -37,6 +38,7 @@ public class Disposition : MonoBehaviour
             if (canPlacing && Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 SetPlane("inactive");
+                currentInstance.GetComponent<ObjectDetection>().isPlaced = true;
                 currentInstance = null;
                 isPlacing = false; // 배치 완료, 배치 모드 비활성화
             }

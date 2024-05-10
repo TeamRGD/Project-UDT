@@ -7,9 +7,13 @@ public class ObjectDetection : MonoBehaviour
 {
     private Disposition dispositionScript;
     public Material buildingMaterial;
-    private bool flag = false;
+    private bool isTransparent = false;
+    public float transparency = 0.5f;
+    private Color originalColor;  // 원래의 색상을 저장할 변수
+    public bool isPlaced = false;
     void Start()
     {
+        originalColor = buildingMaterial.color;
         buildingMaterial = GetComponent<MeshRenderer>().material;
         // BuildingManager 오브젝트에서 Disposition 스크립트 찾기
         GameObject buildingManager = GameObject.Find("BuildingManager");
@@ -31,15 +35,24 @@ public class ObjectDetection : MonoBehaviour
    
     void Update()
     {
-        if (!dispositionScript.isPlacing && !flag)
+        ToggleTransparency(isPlaced);
+    }
+
+    void ToggleTransparency(bool isPlaced)
+    {
+        if (!isPlaced && !isTransparent)
         {
-            Color color = buildingMaterial.color; // 현재 색상을 가져옴
-            color.a = 255; // 알파 값(불투명도) 설정
-            flag = true;
-            buildingMaterial.color = new Color(color.r, color.g, color.b, 100); // 변경된 색상을 메테리얼에 적용
+            // 투명도를 높이기
+            buildingMaterial.color = new Color(originalColor.r, originalColor.g, originalColor.b, transparency);
+            isTransparent = true;
+        }
+        else if (isPlaced)
+        {
+            // 투명도 복원
+            buildingMaterial.color = originalColor;
         }
     }
-    
+
 
     void OnTriggerEnter(Collider other)
     {

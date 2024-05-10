@@ -285,7 +285,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e465d6ca64d73954fa7e71157f16624c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderer: {fileID: 6368426434480508161}
+  buildingMaterial: {fileID: 2100000, guid: a1a61be9dd7e91b4faec2c4eb7ca4e8c, type: 2}
+  transparency: 0.5
 --- !u!120 &-4690101344303865698
 LineRenderer:
   serializedVersion: 2

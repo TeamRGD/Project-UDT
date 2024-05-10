@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlaneBorder : MonoBehaviour
 {
     public Renderer targetRenderer; // 타겟 Plane의 Renderer 컴포넌트
-    public float borderWidth = 0.1f; // 테두리의 두께
+    public float borderWidth = 0.3f; // 테두리의 두께
 
     private LineRenderer lineRenderer;
     private Disposition dispositionScript;
