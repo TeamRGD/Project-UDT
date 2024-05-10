@@ -231,8 +231,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 13.659739, y: 24.802341, z: 12.296448}
-  m_Center: {x: -0.0000023841858, y: 12.401167, z: 0.124479055}
+  m_Size: {x: 15.708509, y: 24.802341, z: 15.7765255}
+  m_Center: {x: -0.08325958, y: 12.401167, z: -0.0867722}
 --- !u!54 &753100830326121868
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -289,6 +289,7 @@ MonoBehaviour:
   buildingMaterial: {fileID: 2100000, guid: a1a61be9dd7e91b4faec2c4eb7ca4e8c, type: 2}
   transparency: 0.5
   isPlaced: 0
+  id: 0
 --- !u!120 &-4690101344303865698
 LineRenderer:
   serializedVersion: 2
@@ -405,4 +406,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6fa93ed6986b043937c8125e239182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material_: {fileID: 2100000, guid: a1a61be9dd7e91b4faec2c4eb7ca4e8c, type: 2}
+  isRemoveMode: 0
