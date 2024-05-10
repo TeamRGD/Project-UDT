@@ -8,6 +8,8 @@ using DG.Tweening;
 public class TitleManager : MonoBehaviour
 {
     public GameObject titleUI;
+    public GameObject bottomUI;
+    public GameObject moneyUI;
     //public string SceneToLoad;
     //void Update()
     //{
@@ -28,8 +30,17 @@ public class TitleManager : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             RectTransform titleRect = titleUI.GetComponent<RectTransform>();
-            titleRect.DOScale(0f, 0.5f).SetEase(Ease.InExpo).OnComplete(() => titleUI.SetActive(false));
+            titleRect.DOScale(0f, 0.5f).SetEase(Ease.InExpo).OnComplete(() => startFunc());
         }
+    }
+
+    public void startFunc()
+    {
+        titleUI.SetActive(false);
+        RectTransform bottomRect = bottomUI.GetComponent<RectTransform>();
+        bottomRect.DOAnchorPosY(137f, 1f).SetEase(Ease.OutQuart);
+        RectTransform moneyRect = moneyUI.GetComponent<RectTransform>();
+        moneyRect.DOAnchorPosY(-50f, 1f).SetEase(Ease.OutQuart);
     }
 
 
