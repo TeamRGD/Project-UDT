@@ -14,7 +14,7 @@ public class ObjectDetection : MonoBehaviour
     void Start()
     {
         originalColor = buildingMaterial.color;
-        buildingMaterial = GetComponent<MeshRenderer>().material;
+        buildingMaterial = GetComponent<MeshRenderer>().material ;
         // BuildingManager 오브젝트에서 Disposition 스크립트 찾기
         GameObject buildingManager = GameObject.Find("BuildingManager");
         if (buildingManager != null)

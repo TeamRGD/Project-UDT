@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6576343838035609593}
   - component: {fileID: 7521347897618158535}
   - component: {fileID: 2463228821197480089}
+  - component: {fileID: 1895670529194792931}
   m_Layer: 0
   m_Name: shop_high
   m_TagString: Building
@@ -270,6 +271,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetRenderer: {fileID: 5866995734976697298}
   borderWidth: 0.3
+--- !u!114 &1895670529194792931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7162850221601690583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6fa93ed6986b043937c8125e239182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8353698749422603366
 GameObject:
   m_ObjectHideFlags: 0

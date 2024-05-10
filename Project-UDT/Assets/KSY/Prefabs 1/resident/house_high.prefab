@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: -780056702798398373}
   - component: {fileID: -1867839874049864697}
   - component: {fileID: -4690101344303865698}
+  - component: {fileID: 3794183220549418188}
   m_Layer: 0
   m_Name: house_high
   m_TagString: Building
@@ -287,6 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingMaterial: {fileID: 2100000, guid: a1a61be9dd7e91b4faec2c4eb7ca4e8c, type: 2}
   transparency: 0.5
+  isPlaced: 0
 --- !u!120 &-4690101344303865698
 LineRenderer:
   serializedVersion: 2
@@ -391,3 +393,16 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &3794183220549418188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6126067553227824070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6fa93ed6986b043937c8125e239182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material_: {fileID: 2100000, guid: a1a61be9dd7e91b4faec2c4eb7ca4e8c, type: 2}

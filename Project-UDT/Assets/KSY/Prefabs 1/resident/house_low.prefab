@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7607120608637852411}
   - component: {fileID: -7108867444757385692}
   - component: {fileID: 5880653789269523660}
+  - component: {fileID: 8833940601606184752}
   m_Layer: 0
   m_Name: house_low
   m_TagString: Building
@@ -270,6 +271,19 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &8833940601606184752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424396777525862158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6fa93ed6986b043937c8125e239182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material_: {fileID: 2100000, guid: d0b99db790965dc40a437662f169eb57, type: 2}
 --- !u!1 &3028312450632860147
 GameObject:
   m_ObjectHideFlags: 0
