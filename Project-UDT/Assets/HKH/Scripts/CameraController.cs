@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour
 {
     public float movementSpeed = 0.1f;
     public float rotationSpeed = 0.1f;
-    public float speed = 5.0f;
+    private float speed = 75.0f;
     private Transform target;
     private bool toggle = false;
     private List<MeshRenderer> targetRenderers = new List<MeshRenderer>();
