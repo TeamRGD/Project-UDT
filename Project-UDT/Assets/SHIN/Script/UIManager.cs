@@ -85,10 +85,9 @@ public class UIManager : MonoBehaviour
     }
 
     public void OnDestroyExit() {
-        destroyTeduri.enabled = false;
         Cursor.SetCursor(originalCursor, new Vector2(0, 0), CursorMode.Auto);
         RectTransform teduriRect = destroyTeduri.GetComponent<RectTransform>();
-        teduriRect.DOScale(1.05f, 0.75f).SetEase(Ease.InQuart);
+        teduriRect.DOScale(1.05f, 0.75f).SetEase(Ease.InQuart).OnComplete(() => destroyTeduri.enabled = false);
         RectTransform destroyRect = destroyInfo.GetComponent<RectTransform>();
         destroyRect.DOAnchorPosY(50f, 1f).SetEase(Ease.OutQuart);
         RectTransform bottomRect = bottomUI.GetComponent<RectTransform>();
